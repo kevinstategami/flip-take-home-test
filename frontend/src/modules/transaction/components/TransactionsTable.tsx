@@ -1,0 +1,39 @@
+"use client";
+
+import { capitalize, formatCurrency } from "@/utils/formatter";
+import { useTransactions } from "../hooks/useTransactions";
+
+export default function TransactionsTable() {
+  const { issues } = useTransactions();
+
+  return (
+    <div className="card">
+      <h2 className="title">Issues</h2>
+
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {issues.map((t: any, i: number) => (
+            <tr key={i}>
+              <td>{t.name}</td>
+              <td>{t.type}</td>
+              <td>{formatCurrency(t.amount)}</td>
+              <td>
+                <span className={`status-${t.status.toLowerCase()}`}>{capitalize(t.status)}</span></td>
+              <td>{t.description}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}

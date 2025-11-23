@@ -1,6 +1,6 @@
 "use client";
 
-import { capitalize, formatCurrency } from "@/utils/formatter";
+import { capitalize, formatAmount, formatCurrency, formatUnixDate } from "@/utils/formatter";
 import { useTransactions } from "../hooks/useTransactions";
 
 export default function TransactionsTable() {
@@ -14,6 +14,7 @@ export default function TransactionsTable() {
         <thead>
           <tr>
             <th>Name</th>
+            <th>Date</th>
             <th>Type</th>
             <th>Amount</th>
             <th>Status</th>
@@ -25,8 +26,9 @@ export default function TransactionsTable() {
           {issues.map((t: any, i: number) => (
             <tr key={i}>
               <td>{t.name}</td>
+              <td>{formatUnixDate(t.timestamp)}</td>
               <td>{t.type}</td>
-              <td>{formatCurrency(t.amount)}</td>
+              <td>{formatAmount(t.type, t.amount)}</td>
               <td>
                 <span className={`status-${t.status.toLowerCase()}`}>{capitalize(t.status)}</span></td>
               <td>{t.description}</td>

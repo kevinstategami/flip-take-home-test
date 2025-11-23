@@ -99,7 +99,6 @@ Also includes error normalization:
 Formatters are placed in `src/utils/formatter.ts`:
 
 - capitalize
-- capitalizeWords
 - formatCurrency
 - formatUnixDate
 - formatStatus
